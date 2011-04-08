@@ -1,0 +1,23 @@
+<project name="MulePackagingTasks" default="jar" >
+
+    <!-- delete all non-soruces -->
+    <target  name="clean">
+        <delete  dir="classes"/>
+        <delete dir="lib"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="classes"/>
+        <copy todir="classes">
+            <fileset dir="resources"/>
+        </copy>
+        <javac srcdir = "." destdir="classes" includeantruntime="true"/>
+    </target>
+
+    <target  name="jar" depends="compile">
+        <mkdir dir="lib"/>
+        <jar destfile="lib/mule-anttasks.jar" >
+            <fileset dir="classes"/>
+        </jar>
+    </target>
+</project>
