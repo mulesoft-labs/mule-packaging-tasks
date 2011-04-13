@@ -17,7 +17,7 @@ import java.io.File;
 import java.text.MessageFormat;
 
 /**
- * Abstract base class for Mule ant tasks
+ * Check file parameters to Ant tasks
  */
 public class FileChecker extends Task
 {
@@ -32,7 +32,7 @@ public class FileChecker extends Task
     }
 
     /**
-     * Check that a specified file is valid
+     * Check that a specified file parameter is valid
      */
     public void checkFile(File file, String parameterName, boolean isDirectory, boolean needWrite) throws BuildException
     {
