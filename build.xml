@@ -2,22 +2,22 @@
 
     <!-- delete all non-soruces -->
     <target  name="clean">
-        <delete  dir="classes"/>
-        <delete dir="lib"/>
+        <delete  dir="bin"/>
+        <delete dir="bin"/>
     </target>
 
     <target name="compile">
-        <mkdir dir="classes"/>
-        <copy todir="classes">
-            <fileset dir="resources"/>
+        <mkdir dir="bin"/>
+        <copy todir="bin">
+            <fileset dir="src/main/resources"/>
         </copy>
-        <javac srcdir = "." destdir="classes" includeantruntime="true"/>
+        <javac srcdir = "." destdir="bin" includeantruntime="true" classpath="lib/jersey-client-1.6.jar"/>
     </target>
 
     <target  name="jar" depends="compile">
-        <mkdir dir="lib"/>
-        <jar destfile="lib/mule-anttasks.jar" >
-            <fileset dir="classes"/>
+        <mkdir dir="bin"/>
+        <jar destfile="bin/mule-anttasks.jar" >
+            <fileset dir="bin"/>
         </jar>
     </target>
 </project>
