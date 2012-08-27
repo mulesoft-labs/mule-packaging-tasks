@@ -125,3 +125,45 @@ If <i>muleHome</i> is not specified, the value of the property <i>dir.mule.home<
 <code>/usr/opt/mule</code>. </p>
 
 
+<h2><a name="cloudHubDeploy">cloudHubDeploy</a></h2>
+<h3>Description</h3>
+
+<p>Deploys a Mule application archive to CloudHub.</p>
+
+<h3>Parameters</h3>
+<table border="1" cellpadding="6" cellspacing="2">
+    <tr>
+        <td valign="top"><b>Attribute</b></td>
+        <td valign="top"><b>Description</b></td>
+        <td align="center" valign="top"><b>Required</b></td>
+    </tr>
+
+    <tr>
+        <td valign="top">applicationFile</td>
+        <td valign="top">the application file to deploy</td>
+        <td align="center" valign="top">Yes</td>
+    </tr>
+
+    <tr>
+        <td valign="top">domain</td>
+        <td valign="top">the CloudHub domain of the application.</td>
+        <td align="center" valign="top">Yes</td>
+    </tr>
+    <tr>
+        <td valign="top">username</td>
+        <td valign="top">the CloudHub account username.</td>
+        <td align="center" valign="top">Yes</td>
+    </tr>
+    <tr>
+        <td valign="top">password</td>
+        <td valign="top">the CloudHub account password.</td>
+        <td align="center" valign="top">Yes</td>
+    </tr>
+</table>
+
+<h3>Examples</h3>
+
+<pre>&lt;cloudHubDeploy applicationFile=&quot;${app.file}&quot; domain=&quot;${app.name}&quot;/&gt; username="myUsername" password="myPassword" /&gt;
+</pre>
+
+<p>deploys the application <code>${app.file}</code> to CloudHub 
