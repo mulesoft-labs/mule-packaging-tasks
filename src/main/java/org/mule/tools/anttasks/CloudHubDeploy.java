@@ -26,8 +26,6 @@ public class CloudHubDeploy extends Task {
 
 	private String cloudHubUrl = "https://cloudhub.io";
 	
-	private String domainCreationRequestTemplate = "{\"domain\" : \"[DOMAIN]\",\"workers\" : 1, \"muleVersion\":\"3.3\", \"properties\" : [{ \"your.system.property\", \"some.value\"}]}";
-
 	/**
 	 * install the application file
 	 */
@@ -37,15 +35,11 @@ public class CloudHubDeploy extends Task {
 		checker.checkFile(applicationFile, "application file", false, false);
 		try {
 			Client client = Client.create();
-			// client basic auth demonstration
 			client.addFilter(new HTTPBasicAuthFilter(username, password));
 			WebResource webResource = client.resource(cloudHubUrl);
 			String domainCreationPath = "/api/applications/" + domain;
-			//String domainCreationRequest = domainCreationRequestTemplate.replace("[DOMAIN]", domain);
-			//webResource.path(domainCreationPath).post(String.class, domainCreationRequest);
 			String appDeploymentPath = domainCreationPath + "/deploy"; 
-			String page = (String) webResource.path(appDeploymentPath).post(String.class, applicationFile);
-			System.out.println(page);
+			webResource.path(appDeploymentPath).post(String.class, applicationFile);
 		} catch (Exception exception) {
 			throw new BuildException(MessageFormat.format("Problem deploying Mule application file {0} to {1}. Exception: {2}", applicationFile, cloudHubUrl, exception.getMessage()), exception, getLocation());
 		}
@@ -61,10 +55,6 @@ public class CloudHubDeploy extends Task {
 
 	public void setDomain(String domain) {
 		this.domain = domain;
-	}
-
-	public void setCloudHubUrl(String cloudHubUrl) {
-		this.cloudHubUrl = cloudHubUrl;
 	}
 
 	/**
